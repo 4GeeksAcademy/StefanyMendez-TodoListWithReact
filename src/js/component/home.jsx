@@ -15,8 +15,8 @@ const Home = () => {
 		if (todo !== "") {
 			setTodos([todo, ...todos])
 			setTasks(todos.length+1)
+            setTodo("")
 		}
-		
 	}
 	const eliminarTodos = (id) => {
 		const delTodo = todos.filter((to, index)=> index !== id);
@@ -24,7 +24,7 @@ const Home = () => {
 		setTodos([...delTodo])
 		setTasks(todos.length-1)
 		
-		if (todos.length-1 === 0) setTasks("No tasks, add a task")
+		todos.length-1 === 0 ? setTasks("No tasks, add a task"):null
 	}
 	
 	return (
@@ -34,8 +34,7 @@ const Home = () => {
 				
 					<input className="input" name="task" type="text" placeholder="What needs to be done?" value={todo} onChange={(e)=>{setTodo(e.target.value)}} onKeyDown={(e)=>{
 						if(e.keyCode === 13){
-							handleSubmit();
-							setTodo("")	
+							handleSubmit();	
 					}
 				}}/>
 			
@@ -48,7 +47,6 @@ const Home = () => {
 							</li>
 						))
 					}
-
 				</ul>
 				<hr />
 				<label className="footer">{numberTasks + " items left"} </label>
@@ -59,5 +57,4 @@ const Home = () => {
 		</div>
 	);
 };
-
 export default Home;
